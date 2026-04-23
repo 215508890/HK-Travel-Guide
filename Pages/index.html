@@ -12,7 +12,7 @@
     <meta property="og:title" content="Hong Kong Travel Guide | Discover the Best of Asia's World City">
     <meta property="og:description" content="Your ultimate resource for exploring Hong Kong. Attractions, food, itineraries, and practical tips.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="img/hero-001.jpg">
+    <meta property="og:image" content="Images/index-001.jpg">
     <meta property="og:locale" content="en_US">
     
     <title>Hong Kong Travel Guide | Home</title>
@@ -248,12 +248,11 @@
             transition: background 0.15s, color 0.15s;
             position: relative;
         }
-        /* Differentiate pages and languages: language items smaller */
         .nav-list-mobile li a {
             font-size: 1.1rem;
         }
         .lang-list-mobile li a {
-            font-size: 0.9rem;  /* smaller than main nav */
+            font-size: 0.9rem; /* smaller than main nav */
         }
         .nav-list-mobile li a:hover,
         .lang-list-mobile li a:hover {
@@ -324,10 +323,8 @@
             background-position: center;
             background-repeat: no-repeat;
             transition: background-image 1s ease-in-out;
-            /* initial image will be set by JS */
-            background-image: url('img/hero-001.jpg');
+            background-image: url('Images/index-001.jpg');
         }
-        /* Dark overlay for text readability */
         .hero::before {
             content: "";
             position: absolute;
@@ -577,22 +574,22 @@
         <section>
             <h2>Must‑See Attractions</h2>
             <div class="card-grid">
-                <div class="card" data-lightbox="img/index-002.jpg" data-caption="Victoria Peak: The best panoramic view of Hong Kong's skyline.">
-                    <img src="img/index-002.jpg" alt="Victoria Peak view">
+                <div class="card" data-lightbox="Images/index-002.jpg" data-caption="Victoria Peak: The best panoramic view of Hong Kong's skyline.">
+                    <img src="Images/index-002.jpg" alt="Victoria Peak view">
                     <div class="card-body">
                         <h3>Victoria Peak</h3>
                         <p>The best panoramic view of Hong Kong's skyline. Ride the historic Peak Tram and watch the city light up at night.</p>
                     </div>
                 </div>
-                <div class="card" data-lightbox="img/index-003.jpg" data-caption="Star Ferry: A timeless journey across Victoria Harbour.">
-                    <img src="img/index-003.jpg" alt="Star Ferry">
+                <div class="card" data-lightbox="Images/index-003.jpg" data-caption="Star Ferry: A timeless journey across Victoria Harbour.">
+                    <img src="Images/index-003.jpg" alt="Star Ferry">
                     <div class="card-body">
                         <h3>Star Ferry</h3>
                         <p>A timeless journey across Victoria Harbour. An affordable and scenic way to connect Hong Kong Island and Kowloon.</p>
                     </div>
                 </div>
-                <div class="card" data-lightbox="img/index-004.jpg" data-caption="Big Buddha (Lantau): A giant Tian Tan Buddha and serene monastery.">
-                    <img src="img/index-004.jpg" alt="Tian Tan Buddha">
+                <div class="card" data-lightbox="Images/index-004.jpg" data-caption="Big Buddha (Lantau): A giant Tian Tan Buddha and serene monastery.">
+                    <img src="Images/index-004.jpg" alt="Tian Tan Buddha">
                     <div class="card-body">
                         <h3>Big Buddha (Lantau)</h3>
                         <p>Visit the giant Tian Tan Buddha and the serene Po Lin Monastery, reached by a breathtaking cable car ride.</p>
@@ -604,22 +601,22 @@
         <section>
             <h2>Taste the City</h2>
             <div class="card-grid">
-                <div class="card" data-lightbox="img/index-005.jpg" data-caption="Dim Sum: Bamboo baskets of shrimp dumplings and BBQ pork buns.">
-                    <img src="img/index-005.jpg" alt="Dim sum spread">
+                <div class="card" data-lightbox="Images/index-005.jpg" data-caption="Dim Sum: Bamboo baskets of shrimp dumplings and BBQ pork buns.">
+                    <img src="Images/index-005.jpg" alt="Dim sum spread">
                     <div class="card-body">
                         <h3>Dim Sum</h3>
                         <p>No trip is complete without bamboo baskets of shrimp dumplings, siu mai, and BBQ pork buns.</p>
                     </div>
                 </div>
-                <div class="card" data-lightbox="img/index-006.jpg" data-caption="Egg Tarts: Flaky pastry with silky egg custard.">
-                    <img src="img/index-006.jpg" alt="Egg tart">
+                <div class="card" data-lightbox="Images/index-006.jpg" data-caption="Egg Tarts: Flaky pastry with silky egg custard.">
+                    <img src="Images/index-006.jpg" alt="Egg tart">
                     <div class="card-body">
                         <h3>Egg Tarts</h3>
                         <p>Flaky pastry or cookie crust, filled with silky egg custard – a beloved local sweet treat.</p>
                     </div>
                 </div>
-                <div class="card" data-lightbox="img/index-007.jpg" data-caption="Street Food: Bustling dai pai dongs and night markets.">
-                    <img src="img/index-007.jpg" alt="Street food stall">
+                <div class="card" data-lightbox="Images/index-007.jpg" data-caption="Street Food: Bustling dai pai dongs and night markets.">
+                    <img src="Images/index-007.jpg" alt="Street food stall">
                     <div class="card-body">
                         <h3>Street Food</h3>
                         <p>From fish balls to stinky tofu, explore bustling dai pai dongs and night markets.</p>
@@ -694,11 +691,11 @@
         (function() {
             const hero = document.getElementById('heroSlider');
             const images = [
-                'img/hero-001.jpg',
-                'img/hero-002.jpg',
-                'img/hero-003.jpg',
-                'img/hero-004.jpg',
-                'img/hero-005.jpg'
+                'Images/index-001.jpg',
+                'Images/index-002.jpg',
+                'Images/index-003.jpg',
+                'Images/index-004.jpg',
+                'Images/index-005.jpg'
             ];
             let currentIndex = 0;
             
@@ -714,10 +711,7 @@
                 hero.style.backgroundImage = `url('${images[currentIndex]}')`;
             }
             
-            // Preload for smooth transition
             preloadImages();
-            
-            // Change every 5 seconds
             setInterval(changeBackground, 5000);
         })();
         
