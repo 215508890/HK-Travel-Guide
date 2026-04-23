@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Plan your Hong Kong adventure with our comprehensive travel guide. Discover top attractions, local food, itineraries, and insider tips for an unforgettable trip.">
+    <meta name="keywords" content="Hong Kong travel, Hong Kong guide, visit Hong Kong, Hong Kong attractions, Hong Kong food, Hong Kong tips">
+    <meta name="author" content="HK Travel Guides">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Hong Kong Travel Guide | Discover the Best of Asia's World City">
+    <meta property="og:description" content="Your ultimate resource for exploring Hong Kong. Attractions, food, itineraries, and practical tips.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="img/hero-001.jpg">
+    <meta property="og:locale" content="en_US">
+    
+    <title>Hong Kong Travel Guide | Home</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 10px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        /* Logo */
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #2c3e50;
+            text-decoration: none;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+            display: flex;
+            align-items: baseline;
+            gap: 0.25rem;
+        }
+        .logo-hk {
+            font-weight: 800;
+            color: #b0302a;
+            font-size: 2rem;
+            letter-spacing: -0.02em;
+        }
+        .logo-tagline {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #2c3e50;
+            letter-spacing: 0;
+        }
+        
+        /* Desktop navigation & globe */
+        .right-group {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .nav-desktop .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        .nav-desktop .nav-list li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 1.05rem;
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .nav-desktop .nav-list li a:hover,
+        .nav-desktop .nav-list li a.active {
+            border-bottom-color: #b0302a;
+            color: #b0302a;
+        }
+        
+        .lang-selector-container {
+            position: relative;
+        }
+        .globe-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.4rem;
+            display: flex;
+            align-items: center;
+            border-radius: 50%;
+            transition: background 0.2s;
+            color: #2c3e50;
+        }
+        .globe-btn:hover {
+            background: #f0f0f0;
+        }
+        .globe-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+        }
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid #eaeaea;
+            list-style: none;
+            padding: 0.6rem 0;
+            min-width: 150px;
+            display: none;
+            z-index: 120;
+        }
+        .lang-dropdown.show {
+            display: block;
+        }
+        .lang-dropdown li a {
+            display: block;
+            padding: 0.5rem 1.2rem;
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.15s;
+        }
+        .lang-dropdown li a:hover {
+            background: #f6f6f6;
+        }
+        .lang-dropdown li a.active-lang {
+            font-weight: 700;
+            color: #b0302a;
+            background: #fff5f5;
+        }
+        
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 110;
+            outline: none;
+        }
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #2c3e50;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        
+        /* Mobile navigation drawer */
+        .nav-wrapper {
+            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(16px);
+            border-radius: 0 0 20px 20px;
+            box-shadow: none;
+            display: none;
+            margin-top: 0.5rem;
+        }
+        .nav-wrapper.open {
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.08);
+            display: block;
+        }
+        .nav-list-mobile,
+        .lang-list-mobile {
+            list-style: none;
+            padding: 1.5rem;
+            margin: 0;
+        }
+        .lang-list-mobile {
+            border-top: 1px solid #eaeaea;
+            margin: 0 1.5rem;
+            padding: 1.5rem 0.5rem 1.5rem;
+        }
+        .lang-list-mobile::before {
+            content: "Languages";
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #999;
+            margin-bottom: 0.8rem;
+            padding-left: 0.8rem;
+        }
+        .nav-list-mobile li a,
+        .lang-list-mobile li a {
+            display: flex;
+            align-items: center;
+            padding: 0.9rem 1.2rem;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: background 0.15s, color 0.15s;
+            position: relative;
+        }
+        /* Differentiate pages and languages: language items smaller */
+        .nav-list-mobile li a {
+            font-size: 1.1rem;
+        }
+        .lang-list-mobile li a {
+            font-size: 0.9rem;  /* smaller than main nav */
+        }
+        .nav-list-mobile li a:hover,
+        .lang-list-mobile li a:hover {
+            background: #f5f5f5;
+        }
+        .nav-list-mobile li a.active,
+        .lang-list-mobile li a.active-lang {
+            color: #b0302a;
+            font-weight: 600;
+            background: #fff5f5;
+        }
+        .nav-list-mobile li a.active::after,
+        .lang-list-mobile li a.active-lang::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 24px;
+            background: #b0302a;
+            border-radius: 4px;
+        }
+        .lang-list-mobile .checkmark {
+            margin-left: auto;
+            color: #b0302a;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .right-group {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .nav-wrapper {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .container {
+                padding: 0 1.2rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Hero Section with auto-sliding background */
+        .hero {
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 6rem 2rem;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background-image 1s ease-in-out;
+            /* initial image will be set by JS */
+            background-image: url('img/hero-001.jpg');
+        }
+        /* Dark overlay for text readability */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4));
+            z-index: 1;
+        }
+        .hero h1, .hero p, .hero .btn {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 720px;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            color: #f0f0f0;
+        }
+        .btn {
+            display: inline-block;
+            background: #b0302a;
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            transition: background 0.25s, transform 0.1s;
+            box-shadow: 0 4px 14px rgba(176, 48, 42, 0.3);
+        }
+        .btn:hover {
+            background: #8b2622;
+            transform: translateY(-2px);
+        }
+        
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #111;
+            letter-spacing: -0.01em;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.04);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .card-body {
+            padding: 1.5rem;
+        }
+        .card-body h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #b0302a;
+        }
+        .card-body p {
+            color: #4a4a4a;
+        }
+        .highlight-box {
+            background: #f9fafb;
+            border-left: 4px solid #b0302a;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            margin-top: 2.5rem;
+            font-size: 1.05rem;
+        }
+        .highlight-box a {
+            color: #b0302a;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.85);
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .lightbox-caption {
+            margin-top: 1rem;
+            text-align: center;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .lightbox-close:hover,
+        .lightbox-close:focus {
+            color: #bbb;
+        }
+        
+        footer {
+            background: #1e1e1e;
+            color: #ccc;
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #ccc;
+            text-decoration: underline;
+        }
+        footer a:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-hk">HK</span>
+                <span class="logo-tagline">Travel Guide</span>
+            </a>
+            
+            <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="right-group">
+                <nav class="nav-desktop">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="active">Hong Kong</a></li>
+                        <li><a href="itineraries.html">Itineraries</a></li>
+                        <li><a href="food.html">Food</a></li>
+                        <li><a href="attractions.html">Attractions</a></li>
+                        <li><a href="tips.html">Tips</a></li>
+                    </ul>
+                </nav>
+                <div class="lang-selector-container">
+                    <button class="globe-btn" id="globeBtn" aria-label="Select language">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </button>
+                    <ul class="lang-dropdown" id="langDropdown">
+                        <li><a href="index.html" class="active-lang">English</a></li>
+                        <li><a href="index-zh.html">繁體中文</a></li>
+                        <li><a href="index-ja.html">日本語</a></li>
+                        <li><a href="index-ko.html">한국어</a></li>
+                        <li><a href="index-zh-hans.html">简体中文</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="nav-wrapper" id="navWrapper">
+                <ul class="nav-list-mobile">
+                    <li><a href="index.html" class="active">Hong Kong</a></li>
+                    <li><a href="itineraries.html">Itineraries</a></li>
+                    <li><a href="food.html">Food</a></li>
+                    <li><a href="attractions.html">Attractions</a></li>
+                    <li><a href="tips.html">Tips</a></li>
+                </ul>
+                <ul class="lang-list-mobile">
+                    <li><a href="index.html" class="active-lang">English <span class="checkmark">✓</span></a></li>
+                    <li><a href="index-zh.html">繁體中文</a></li>
+                    <li><a href="index-ja.html">日本語</a></li>
+                    <li><a href="index-ko.html">한국어</a></li>
+                    <li><a href="index-zh-hans.html">简体中文</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with auto-sliding background -->
+    <section class="hero" id="heroSlider">
+        <h1>Discover Hong Kong</h1>
+        <p>Where towering skyscrapers meet ancient traditions – your ultimate travel guide to Asia's World City.</p>
+        <a href="itineraries.html" class="btn">Explore Itineraries</a>
+    </section>
+
+    <main class="container">
+        <section>
+            <h2>Why Visit Hong Kong?</h2>
+            <p>Hong Kong is a city that never fails to amaze. From the iconic Victoria Harbour and lush hiking trails to world‑class dim sum and vibrant night markets, there's something for every traveler. Our guides help you experience the best of the city like a local – whether it's your first visit or your tenth.</p>
+        </section>
+        
+        <section>
+            <h2>Must‑See Attractions</h2>
+            <div class="card-grid">
+                <div class="card" data-lightbox="img/index-002.jpg" data-caption="Victoria Peak: The best panoramic view of Hong Kong's skyline.">
+                    <img src="img/index-002.jpg" alt="Victoria Peak view">
+                    <div class="card-body">
+                        <h3>Victoria Peak</h3>
+                        <p>The best panoramic view of Hong Kong's skyline. Ride the historic Peak Tram and watch the city light up at night.</p>
+                    </div>
+                </div>
+                <div class="card" data-lightbox="img/index-003.jpg" data-caption="Star Ferry: A timeless journey across Victoria Harbour.">
+                    <img src="img/index-003.jpg" alt="Star Ferry">
+                    <div class="card-body">
+                        <h3>Star Ferry</h3>
+                        <p>A timeless journey across Victoria Harbour. An affordable and scenic way to connect Hong Kong Island and Kowloon.</p>
+                    </div>
+                </div>
+                <div class="card" data-lightbox="img/index-004.jpg" data-caption="Big Buddha (Lantau): A giant Tian Tan Buddha and serene monastery.">
+                    <img src="img/index-004.jpg" alt="Tian Tan Buddha">
+                    <div class="card-body">
+                        <h3>Big Buddha (Lantau)</h3>
+                        <p>Visit the giant Tian Tan Buddha and the serene Po Lin Monastery, reached by a breathtaking cable car ride.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Taste the City</h2>
+            <div class="card-grid">
+                <div class="card" data-lightbox="img/index-005.jpg" data-caption="Dim Sum: Bamboo baskets of shrimp dumplings and BBQ pork buns.">
+                    <img src="img/index-005.jpg" alt="Dim sum spread">
+                    <div class="card-body">
+                        <h3>Dim Sum</h3>
+                        <p>No trip is complete without bamboo baskets of shrimp dumplings, siu mai, and BBQ pork buns.</p>
+                    </div>
+                </div>
+                <div class="card" data-lightbox="img/index-006.jpg" data-caption="Egg Tarts: Flaky pastry with silky egg custard.">
+                    <img src="img/index-006.jpg" alt="Egg tart">
+                    <div class="card-body">
+                        <h3>Egg Tarts</h3>
+                        <p>Flaky pastry or cookie crust, filled with silky egg custard – a beloved local sweet treat.</p>
+                    </div>
+                </div>
+                <div class="card" data-lightbox="img/index-007.jpg" data-caption="Street Food: Bustling dai pai dongs and night markets.">
+                    <img src="img/index-007.jpg" alt="Street food stall">
+                    <div class="card-body">
+                        <h3>Street Food</h3>
+                        <p>From fish balls to stinky tofu, explore bustling dai pai dongs and night markets.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <p><strong>Don't miss our detailed <a href="food.html">Food Guide</a> for the best restaurants and hidden gems.</strong></p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Getting Around & Practical Tips</h2>
+            <p>Hong Kong's public transport is efficient and tourist‑friendly. The <strong>Octopus card</strong> is your key to the MTR, buses, ferries, and even convenience stores. Free Wi‑Fi spots and widespread English signage make navigating stress‑free.</p>
+            <p style="margin-top:1rem;">For mobile data, pick up a SoSIM card at any Watsons or ParknShop – 50GB for just HK$33.</p>
+            <a href="tips.html" class="btn" style="margin-top:2rem; display:inline-block;">Read Full Tips</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Hong Kong Travel Guide · Designed for explorers and food lovers.</p>
+        <p style="margin-top:0.4rem;">
+            <a href="index.html">English</a> | 
+            <a href="index-zh.html">繁體中文</a> | 
+            <a href="index-ja.html">日本語</a> | 
+            <a href="index-ko.html">한국어</a> | 
+            <a href="index-zh-hans.html">简体中文</a>
+        </p>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" src="" alt="">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <script>
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navWrapper = document.getElementById('navWrapper');
+        hamburger.addEventListener('click', () => {
+            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+            hamburger.setAttribute('aria-expanded', !expanded);
+            hamburger.classList.toggle('active');
+            navWrapper.classList.toggle('open');
+        });
+        document.querySelectorAll('.nav-list-mobile a, .lang-list-mobile a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navWrapper.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+        
+        // Globe dropdown
+        const globeBtn = document.getElementById('globeBtn');
+        const langDropdown = document.getElementById('langDropdown');
+        globeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langDropdown.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+            if (!globeBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+                langDropdown.classList.remove('show');
+            }
+        });
+        langDropdown.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => langDropdown.classList.remove('show'));
+        });
+        
+        // Hero image auto slider
+        (function() {
+            const hero = document.getElementById('heroSlider');
+            const images = [
+                'img/hero-001.jpg',
+                'img/hero-002.jpg',
+                'img/hero-003.jpg',
+                'img/hero-004.jpg',
+                'img/hero-005.jpg'
+            ];
+            let currentIndex = 0;
+            
+            function preloadImages() {
+                images.forEach(src => {
+                    const img = new Image();
+                    img.src = src;
+                });
+            }
+            
+            function changeBackground() {
+                currentIndex = (currentIndex + 1) % images.length;
+                hero.style.backgroundImage = `url('${images[currentIndex]}')`;
+            }
+            
+            // Preload for smooth transition
+            preloadImages();
+            
+            // Change every 5 seconds
+            setInterval(changeBackground, 5000);
+        })();
+        
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxClose = document.getElementById('lightboxClose');
+        
+        document.querySelectorAll('[data-lightbox]').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                lightboxImg.src = trigger.getAttribute('data-lightbox');
+                lightboxCaption.textContent = trigger.getAttribute('data-caption') || trigger.querySelector('img')?.getAttribute('alt') || '';
+                lightbox.classList.add('active');
+            });
+        });
+        
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            lightboxImg.src = '';
+        });
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                lightboxImg.src = '';
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                lightboxImg.src = '';
+            }
+        });
+    </script>
+</body>
+</html>
