@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Plan your Hong Kong adventure with our comprehensive travel guide. Discover top attractions, local food, itineraries, and insider tips for an unforgettable trip.">
-    <meta name="keywords" content="Hong Kong travel, Hong Kong guide, visit Hong Kong, Hong Kong attractions, Hong Kong food, Hong Kong tips">
+    <meta name="description" content="Plan your Hong Kong adventure with our comprehensive travel guide. Discover top attractions, local food, itineraries, and insider tips.">
+    <meta name="keywords" content="Hong Kong travel, Hong Kong guide, visit Hong Kong, attractions, food, tips">
     <meta name="author" content="HK Travel Guides">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Hong Kong Travel Guide | Discover the Best of Asia's World City">
+    <meta property="og:title" content="Hong Kong Travel Guide | Discover Asia's World City">
     <meta property="og:description" content="Your ultimate resource for exploring Hong Kong. Attractions, food, itineraries, and practical tips.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="Images/index-001.jpg">
@@ -55,7 +54,6 @@
             flex-wrap: wrap;
         }
         
-        /* Logo */
         .logo {
             font-size: 1.4rem;
             font-weight: 400;
@@ -77,10 +75,8 @@
             font-size: 1rem;
             font-weight: 400;
             color: #2c3e50;
-            letter-spacing: 0;
         }
         
-        /* Desktop navigation & globe */
         .right-group {
             display: flex;
             align-items: center;
@@ -196,94 +192,83 @@
             transform: translateY(-9px) rotate(-45deg);
         }
         
-        /* Mobile navigation drawer */
+        /* Mobile navigation drawer – compact & semi‑transparent */
         .nav-wrapper {
+            position: absolute;
+            top: 100%;
+            left: 0;
             width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 16px 24px rgba(0,0,0,0.08);
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(16px);
-            border-radius: 0 0 20px 20px;
-            box-shadow: none;
+            transition: max-height 0.4s ease, box-shadow 0.3s;
+            z-index: 99;
             display: none;
-            margin-top: 0.5rem;
         }
         .nav-wrapper.open {
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.08);
+            max-height: 500px;
             display: block;
         }
         .nav-list-mobile,
         .lang-list-mobile {
             list-style: none;
-            padding: 1.5rem;
+            padding: 0.8rem 1.2rem;
             margin: 0;
         }
         .lang-list-mobile {
-            border-top: 1px solid #eaeaea;
+            border-top: 1px solid rgba(0,0,0,0.06);
             margin: 0 1.5rem;
-            padding: 1.5rem 0.5rem 1.5rem;
+            padding: 0.8rem 0.5rem 0.8rem;
         }
         .lang-list-mobile::before {
             content: "Languages";
             display: block;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             color: #999;
-            margin-bottom: 0.8rem;
-            padding-left: 0.8rem;
+            margin-bottom: 0.4rem;
+            padding-left: 0.6rem;
         }
         .nav-list-mobile li a,
         .lang-list-mobile li a {
             display: flex;
             align-items: center;
-            padding: 0.9rem 1.2rem;
+            padding: 0.7rem 1rem;
             text-decoration: none;
             color: #2c3e50;
             font-weight: 500;
-            border-radius: 12px;
+            border-radius: 10px;
             transition: background 0.15s, color 0.15s;
             position: relative;
         }
         .nav-list-mobile li a {
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
         .lang-list-mobile li a {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
         }
         .nav-list-mobile li a:hover,
         .lang-list-mobile li a:hover {
-            background: #f5f5f5;
+            background: rgba(0,0,0,0.03);
         }
         .nav-list-mobile li a.active,
         .lang-list-mobile li a.active-lang {
             color: #b0302a;
             font-weight: 600;
-            background: #fff5f5;
-        }
-        .nav-list-mobile li a.active::after,
-        .lang-list-mobile li a.active-lang::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 24px;
-            background: #b0302a;
-            border-radius: 4px;
+            background: rgba(176,48,42,0.04);
         }
         .lang-list-mobile .checkmark {
             margin-left: auto;
             color: #b0302a;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
         
-        /* Mobile responsive */
         @media (max-width: 768px) {
             .right-group {
                 display: none;
@@ -308,7 +293,7 @@
             }
         }
         
-        /* Hero Section with auto-sliding background */
+        /* Hero with smooth cross‑fade backgrounds */
         .hero {
             position: relative;
             min-height: 500px;
@@ -319,25 +304,39 @@
             text-align: center;
             color: white;
             padding: 6rem 2rem;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            transition: background-image 1s ease-in-out;
-            background-image: url('Images/index-001.jpg');
+            transition: opacity 1s ease-in-out;
         }
-        .hero::before {
-            content: "";
+        .hero-bg.active {
+            opacity: 1;
+            z-index: 0;
+        }
+        .hero-bg.next {
+            opacity: 0;
+            z-index: 1;
+        }
+        .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4));
-            z-index: 1;
-        }
-        .hero h1, .hero p, .hero .btn {
-            position: relative;
             z-index: 2;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
         }
         .hero h1 {
             font-size: 3.2rem;
@@ -371,9 +370,16 @@
             transform: translateY(-2px);
         }
         
-        /* Sections */
+        /* Sections with reveal animation */
         section {
             padding: 4rem 0;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        section.revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
         h2 {
             font-size: 2rem;
@@ -425,6 +431,7 @@
             border-radius: 10px;
             margin-top: 2.5rem;
             font-size: 1.05rem;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         .highlight-box a {
             color: #b0302a;
@@ -441,7 +448,6 @@
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
             background-color: rgba(0,0,0,0.9);
         }
         .lightbox.active {
@@ -455,7 +461,6 @@
             flex-direction: column;
             align-items: center;
             max-width: 90%;
-            margin: auto;
         }
         .lightbox-content {
             max-width: 100%;
@@ -488,8 +493,6 @@
         .lightbox-close:focus {
             color: #bbb;
         }
-        
-        /* Mobile lightbox adjustments */
         @media (max-width: 768px) {
             .lightbox-content {
                 max-height: 60vh;
@@ -582,20 +585,25 @@
         </div>
     </header>
 
-    <!-- Hero Section with auto-sliding background -->
+    <!-- Hero Section with smooth cross‑fade backgrounds -->
     <section class="hero" id="heroSlider">
-        <h1>Discover Hong Kong</h1>
-        <p>Where towering skyscrapers meet ancient traditions – your ultimate travel guide to Asia's World City.</p>
-        <a href="itineraries.html" class="btn">Explore Itineraries</a>
+        <div class="hero-bg active" id="heroBg1" style="background-image: url('Images/index-001.jpg');"></div>
+        <div class="hero-bg next" id="heroBg2" style="background-image: url('Images/index-002.jpg');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Discover Hong Kong</h1>
+            <p>Where towering skyscrapers meet ancient traditions – your ultimate travel guide to Asia's World City.</p>
+            <a href="itineraries.html" class="btn">Explore Itineraries</a>
+        </div>
     </section>
 
     <main class="container">
-        <section>
+        <section class="reveal-on-scroll">
             <h2>Why Visit Hong Kong?</h2>
             <p>Hong Kong is a city that never fails to amaze. From the iconic Victoria Harbour and lush hiking trails to world‑class dim sum and vibrant night markets, there's something for every traveler. Our guides help you experience the best of the city like a local – whether it's your first visit or your tenth.</p>
         </section>
         
-        <section>
+        <section class="reveal-on-scroll">
             <h2>Must‑See Attractions</h2>
             <div class="card-grid">
                 <div class="card" data-lightbox="Images/VictoriaPeak.jpg" data-caption="Victoria Peak: The best panoramic view of Hong Kong's skyline.">
@@ -622,7 +630,7 @@
             </div>
         </section>
 
-        <section>
+        <section class="reveal-on-scroll">
             <h2>Taste the City</h2>
             <div class="card-grid">
                 <div class="card" data-lightbox="Images/DimSum.jpg" data-caption="Dim Sum: Bamboo baskets of shrimp dumplings and BBQ pork buns.">
@@ -647,12 +655,12 @@
                     </div>
                 </div>
             </div>
-            <div class="highlight-box">
+            <div class="highlight-box reveal-on-scroll">
                 <p><strong>Don't miss our detailed <a href="food.html">Food Guide</a> for the best restaurants and hidden gems.</strong></p>
             </div>
         </section>
 
-        <section>
+        <section class="reveal-on-scroll">
             <h2>Getting Around & Practical Tips</h2>
             <p>Hong Kong's public transport is efficient and tourist‑friendly. The <strong>Octopus card</strong> is your key to the MTR, buses, ferries, and even convenience stores. Free Wi‑Fi spots and widespread English signage make navigating stress‑free.</p>
             <p style="margin-top:1rem;">For mobile data, pick up a SoSIM card at any Watsons or ParknShop – 50GB for just HK$33.</p>
@@ -713,9 +721,10 @@
             link.addEventListener('click', () => langDropdown.classList.remove('show'));
         });
         
-        // Hero image auto slider
+        // Hero cross‑fade slider
         (function() {
-            const hero = document.getElementById('heroSlider');
+            const bg1 = document.getElementById('heroBg1');
+            const bg2 = document.getElementById('heroBg2');
             const images = [
                 'Images/index-001.jpg',
                 'Images/index-002.jpg',
@@ -724,21 +733,35 @@
                 'Images/index-005.jpg'
             ];
             let currentIndex = 0;
+            let activeBg = bg1, nextBg = bg2;
             
-            function preloadImages() {
-                images.forEach(src => {
-                    const img = new Image();
-                    img.src = src;
-                });
-            }
+            // Preload all images
+            images.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
             
-            function changeBackground() {
+            setInterval(() => {
                 currentIndex = (currentIndex + 1) % images.length;
-                hero.style.backgroundImage = `url('${images[currentIndex]}')`;
-            }
-            
-            preloadImages();
-            setInterval(changeBackground, 5000);
+                // The currently inactive background gets the new image
+                nextBg.style.backgroundImage = `url('${images[currentIndex]}')`;
+                // Swap active/next classes
+                if (activeBg === bg1) {
+                    bg1.classList.remove('active');
+                    bg1.classList.add('next');
+                    bg2.classList.remove('next');
+                    bg2.classList.add('active');
+                    activeBg = bg2;
+                    nextBg = bg1;
+                } else {
+                    bg2.classList.remove('active');
+                    bg2.classList.add('next');
+                    bg1.classList.remove('next');
+                    bg1.classList.add('active');
+                    activeBg = bg1;
+                    nextBg = bg2;
+                }
+            }, 5000);
         })();
         
         // Lightbox
@@ -771,6 +794,21 @@
                 lightboxImg.src = '';
             }
         });
+        
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        revealElements.forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
