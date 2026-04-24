@@ -12,7 +12,7 @@
     <meta property="og:title" content="Hong Kong Itineraries | Plan Your Perfect Trip">
     <meta property="og:description" content="Expert-designed Hong Kong travel itineraries for every traveler. Explore the best of the city day by day.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="Images/index-001.jpg">
+    <meta property="og:image" content="../Images/index-001.jpg">
     <meta property="og:locale" content="en_US">
     
     <title>Hong Kong Itineraries | Plan Your Trip</title>
@@ -618,7 +618,7 @@
     <div class="itinerary-grid" id="itineraryGrid">
         <!-- 3-Day Classic Express -->
         <div class="itinerary-card" data-duration="3">
-            <img class="card-img" src="Images/VictoriaPeak.jpg" alt="Victoria Peak skyline" onerror="this.src='https://placehold.co/800x400?text=Victoria+Peak'">
+            <img class="card-img" src="../Images/VictoriaPeak.jpg" alt="Victoria Peak skyline" onerror="this.src='https://placehold.co/800x400?text=Victoria+Peak'">
             <div class="card-header">
                 <div>
                     <h3>Classic Express <span class="duration-badge">3 days</span></h3>
@@ -663,7 +663,7 @@
         
         <!-- 5-Day Culture & Nature Deep Dive -->
         <div class="itinerary-card" data-duration="5">
-            <img class="card-img" src="Images/StarFerry.jpg" alt="Star Ferry across Victoria Harbour" onerror="this.src='https://placehold.co/800x400?text=Star+Ferry'">
+            <img class="card-img" src="../Images/StarFerry.jpg" alt="Star Ferry across Victoria Harbour" onerror="this.src='https://placehold.co/800x400?text=Star+Ferry'">
             <div class="card-header">
                 <div>
                     <h3>Culture & Nature Deep Dive <span class="duration-badge">5 days</span></h3>
@@ -719,7 +719,7 @@
         
         <!-- 7-Day Ultimate Hong Kong + Macau -->
         <div class="itinerary-card" data-duration="7">
-            <img class="card-img" src="Images/BigBuddha.jpg" alt="Tian Tan Buddha on Lantau Island" onerror="this.src='https://placehold.co/800x400?text=Big+Buddha'">
+            <img class="card-img" src="../Images/BigBuddha.jpg" alt="Tian Tan Buddha on Lantau Island" onerror="this.src='https://placehold.co/800x400?text=Big+Buddha'">
             <div class="card-header">
                 <div>
                     <h3>Ultimate Hong Kong + Macau <span class="duration-badge">7 days</span></h3>
@@ -852,7 +852,7 @@
         if (viewBtn) viewBtn.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
     });
     
-    // Fixed PDF generation - no syntax error
+    // PDF generation with absolute image URLs (fixes missing images)
     function generateCleanPDF(cardElement, itineraryTitle) {
         // Clone the card
         const cloneCard = cardElement.cloneNode(true);
@@ -868,9 +868,20 @@
             detailsDiv.style.display = 'block';
         }
         
-        // Get image HTML (fixed variable name)
+        // Get image and convert to absolute URL
         const img = cloneCard.querySelector('.card-img');
-        const imageHtml = img && img.src ? `<div style="text-align: center; margin-bottom: 1.5rem;"><img src="${img.src}" alt="${img.alt}" style="max-width: 100%; max-height: 300px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>` : '';
+        let imageHtml = '';
+        if (img && img.src) {
+            // Convert relative path to absolute using current page's base URL
+            let absoluteImgUrl = img.src;
+            try {
+                // If it's already absolute, keep it; otherwise resolve
+                if (!absoluteImgUrl.startsWith('http')) {
+                    absoluteImgUrl = new URL(img.src, window.location.href).href;
+                }
+            } catch(e) { /* fallback to original */ }
+            imageHtml = `<div style="text-align: center; margin-bottom: 1.5rem;"><img src="${absoluteImgUrl}" alt="${img.alt}" style="max-width: 100%; max-height: 300px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>`;
+        }
         
         // Extract title, duration, theme
         const titleElem = cardElement.querySelector('.card-header h3');
@@ -999,7 +1010,7 @@
             </html>
         `;
         
-        // Open print window - some browsers may block popups, so we use a fallback
+        // Open print window
         const printWindow = window.open('', '_blank');
         if (!printWindow) {
             alert("Please allow popups to download the PDF. Alternatively, use your browser's print function (Ctrl+P).");
