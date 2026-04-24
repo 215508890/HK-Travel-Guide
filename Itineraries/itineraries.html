@@ -12,7 +12,7 @@
     <meta property="og:title" content="Hong Kong Itineraries | Plan Your Perfect Trip">
     <meta property="og:description" content="Expert-designed Hong Kong travel itineraries for every traveler. Explore the best of the city day by day.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="Images/index-001.jpg">
+    <meta property="og:../Images" content="../Images/index-001.jpg">
     <meta property="og:locale" content="en_US">
     
     <title>Hong Kong Itineraries | Plan Your Trip</title>
@@ -295,7 +295,7 @@
             background: #e0e0e0;
         }
         
-        /* Itinerary cards with images */
+        /* Itinerary cards with ../Images */
         .itinerary-card {
             background: white;
             border-radius: 24px;
@@ -618,7 +618,7 @@
     <div class="itinerary-grid" id="itineraryGrid">
         <!-- 3-Day Classic Express -->
         <div class="itinerary-card" data-duration="3">
-            <img class="card-img" src="Images/VictoriaPeak.jpg" alt="Victoria Peak skyline" onerror="this.src='https://placehold.co/800x400?text=Victoria+Peak'">
+            <img class="card-img" src="../Images/VictoriaPeak.jpg" alt="Victoria Peak skyline" onerror="this.src='https://placehold.co/800x400?text=Victoria+Peak'">
             <div class="card-header">
                 <div>
                     <h3>Classic Express <span class="duration-badge">3 days</span></h3>
@@ -663,7 +663,7 @@
         
         <!-- 5-Day Culture & Nature Deep Dive -->
         <div class="itinerary-card" data-duration="5">
-            <img class="card-img" src="Images/StarFerry.jpg" alt="Star Ferry across Victoria Harbour" onerror="this.src='https://placehold.co/800x400?text=Star+Ferry'">
+            <img class="card-img" src="../Images/StarFerry.jpg" alt="Star Ferry across Victoria Harbour" onerror="this.src='https://placehold.co/800x400?text=Star+Ferry'">
             <div class="card-header">
                 <div>
                     <h3>Culture & Nature Deep Dive <span class="duration-badge">5 days</span></h3>
@@ -719,7 +719,7 @@
         
         <!-- 7-Day Ultimate Hong Kong + Macau -->
         <div class="itinerary-card" data-duration="7">
-            <img class="card-img" src="Images/BigBuddha.jpg" alt="Tian Tan Buddha on Lantau Island" onerror="this.src='https://placehold.co/800x400?text=Big+Buddha'">
+            <img class="card-img" src="../Images/BigBuddha.jpg" alt="Tian Tan Buddha on Lantau Island" onerror="this.src='https://placehold.co/800x400?text=Big+Buddha'">
             <div class="card-header">
                 <div>
                     <h3>Ultimate Hong Kong + Macau <span class="duration-badge">7 days</span></h3>
@@ -868,9 +868,9 @@
             detailsDiv.style.display = 'block';
         }
         
-        // Get image URL
+        // Get ../Images URL
         const img = cloneCard.querySelector('.card-img');
-        const imageHtml = img ? `<div style="text-align: center; margin-bottom: 1.5rem;"><img src="${img.src}" alt="${img.alt}" style="max-width: 100%; max-height: 300px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>` : '';
+        const ../ImagesHtml = img ? `<div style="text-align: center; margin-bottom: 1.5rem;"><img src="${img.src}" alt="${img.alt}" style="max-width: 100%; max-height: 300px; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>` : '';
         
         // Extract title, duration, theme
         const titleElem = cardElement.querySelector('.card-header h3');
@@ -984,7 +984,7 @@
                         <h1>${escapeHtml(titleText)}</h1>
                         <div><span class="duration">${escapeHtml(durationBadge)}</span> &nbsp; <span class="theme">${escapeHtml(themeText)}</span></div>
                     </div>
-                    ${imageHtml}
+                    ${../ImagesHtml}
                     <div class="content">
                         ${cloneCard.querySelector('.details-inner')?.innerHTML || ''}
                     </div>
